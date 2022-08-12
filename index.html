@@ -8,14 +8,16 @@
 <body>
     <div class="container" id = "app">
         <div class="card">
-            <h1>{{title}}</h1>
+            <h1 :style = "{
+            color : inputValue.length < 5 ? 'darkred' : 'darkblue',
+            fontSize : inputValue.length < 6? '2rem' : '1.5rem',
+            }">{{title}}</h1>
             <div class="form-control">
                 <input type="text"
-                       :value="inputValue"
+                       v-model="inputValue"
                        :placeholder="placeholderValue"
-                       @input = "inputChangeHandler"
                        @keypress.enter = "addNote"/>
-                <input>
+
             </div>
             <button class = "btn" @click = "addNote"> ADD </button>
             <hr/>
