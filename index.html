@@ -6,12 +6,31 @@
     <link rel = "stylesheet" href="theme.css">
 </head>
 <body>
-    <div class="container pt5" id = "app">
-        <div class="card center">
-            <h1>Counter: {{count}}</h1>
-            <div>
-                <button class = "btn primary" @click = "increment">add</button>
-                <button class = "btn danger" @click = "decrement">subtract</button>
+    <div class="container" id = "app">
+        <div class="card">
+            <h1>{{title}}</h1>
+            <div class="form-control">
+                <input type="text"
+                       :value="inputValue"
+                       :placeholder="placeholderValue"
+                       @input = "inputChangeHandler"
+                       @keypress.enter = "addNote"/>
+                <input>
+            </div>
+            <button class = "btn" @click = "addNote"> ADD </button>
+            <hr/>
+            <ul v-if="notes.length" class = "list">
+                <li class = "list-item" v-for="(note, index) in notes" :key = "note">
+                    {{textToUpperCase(note)}}
+                    <button class = "btn danger" @click = "deleteNote(index, $event)">Delete</button>
+                </li>
+                <hr>
+                <li>
+                    Общее количество: {{notes.length}} | Удвоенное : {{doubleCountComputed}}
+                </li>
+            </ul>
+            <div v-else>
+                <h2>А постов то больше и нет</h2>
             </div>
         </div>
     </div>
