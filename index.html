@@ -6,12 +6,11 @@
     <link rel = "stylesheet" href="theme.css">
 </head>
 <body>
+
     <div class="container" id = "app">
         <div class="card">
-            <h1 :style = "{
-            color : inputValue.length < 5 ? 'darkred' : 'darkblue',
-            fontSize : inputValue.length < 6? '2rem' : '1.5rem',
-            }">{{title}}</h1>
+            <h1>{{title}}</h1>
+
             <div class="form-control">
                 <input type="text"
                        v-model="inputValue"
@@ -19,12 +18,23 @@
                        @keypress.enter = "addNote"/>
 
             </div>
-            <button class = "btn" @click = "addNote"> ADD </button>
+
+            <button class = "btn" :class = "inputValue.length > 10 && 'danger'" @click = "addNote"> ADD </button>
+
             <hr/>
+
             <ul v-if="notes.length" class = "list">
+
                 <li class = "list-item" v-for="(note, index) in notes" :key = "note">
-                    {{textToUpperCase(note)}}
+
+                    <span :class = "{
+                        'primary':true,
+                        'bold': note.length > 10
+                    }">
+                        {{index+1 + ")  " + textToUpperCase(note)}}
+                    </span>
                     <button class = "btn danger" @click = "deleteNote(index, $event)">Delete</button>
+
                 </li>
                 <hr>
                 <li>
