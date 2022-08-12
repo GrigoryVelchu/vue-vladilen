@@ -6,6 +6,16 @@
     <link rel = "stylesheet" href="theme.css">
 </head>
 <body>
-
+    <div class="container pt5" id = "app">
+        <div class="card center">
+            <h1>Counter: {{count}}</h1>
+            <div>
+                <button class = "btn primary" @click = "increment">add</button>
+                <button class = "btn danger" @click = "decrement">subtract</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src = "app.js"></script>
 </body>
 </html>
